@@ -25,12 +25,12 @@ namespace Software.Contraband.StateMachines
                 T s = Activator.CreateInstance(type, new object[] { this }) as T;
                 States.Add(s.GetType(), s);
             }
-        
+
+            Initialize();
+
             // Starting state
             CurrentState = States.Values.First(s => s.GetStateInfo.HasFlag(StateType.Default));
             CurrentState.EnterState();
-            
-            Initialize();
         }
 
         protected abstract void Initialize();
