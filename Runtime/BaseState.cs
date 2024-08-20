@@ -12,7 +12,7 @@ namespace Software.Contraband.StateMachines
 
     public abstract class BaseState
     {
-        protected virtual internal StateType GetStateInfo => StateType.Generic;
+        protected internal virtual StateType GetStateInfo => StateType.Generic;
 
         /// <summary>
         /// What you do when you first transition to this state

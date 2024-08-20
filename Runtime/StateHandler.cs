@@ -15,7 +15,7 @@ namespace Software.Contraband.StateMachines
         public Dictionary<Type, T> States { get; protected set; } = new();
         protected T CurrentState { get; set; }
 
-        protected void Awake()
+        private void Awake()
         {
             var states = Assembly.GetAssembly(this.GetType()).GetTypes()
                 .Where(t => !t.IsAbstract && t.IsSubclassOf(typeof(T)));
@@ -33,7 +33,7 @@ namespace Software.Contraband.StateMachines
             CurrentState.EnterState();
         }
 
-        protected abstract void Initialize();
+        protected virtual void Initialize() { }
         public abstract void SwitchState(T newState);
     }
 }
