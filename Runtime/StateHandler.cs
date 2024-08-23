@@ -54,7 +54,10 @@ namespace Software.Contraband.StateMachines
         public void SwitchState(T newState)
         {
             DebugOutput(newState.GetType());
+            
+            CurrentState.ExitState();
             SwitchStateImpl(newState);
+            CurrentState.EnterState();
         }
 
         // ReSharper disable once VirtualMemberNeverOverridden.Global

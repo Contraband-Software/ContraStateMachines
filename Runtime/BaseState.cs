@@ -18,11 +18,12 @@ namespace Software.Contraband.StateMachines
         /// What you do when you first transition to this state
         /// </summary>
         /// <param name="stateHandler"></param>
-        public abstract void EnterState();
+        protected internal virtual void EnterState() { }
+
         /// <summary>
         /// What you do right before switching to another state
         /// </summary>
         /// <param name="stateHandler"></param>
-        public abstract void ExitState();
+        protected internal virtual void ExitState() { }
     }
 }
