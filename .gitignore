@@ -10,6 +10,13 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
+README.md.meta
+LICENSE.meta
+CHANGELOG.md.meta
+
+# Asset meta data should only be ignored when the corresponding asset is also ignored
+!/[Aa]ssets/**/*.meta
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
