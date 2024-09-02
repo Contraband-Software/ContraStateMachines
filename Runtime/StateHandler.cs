@@ -10,7 +10,7 @@ namespace Software.Contraband.StateMachines
     /// <summary>
     /// A StateHandler that handles states of a certain type inherited from BaseState
     /// </summary>
-    public abstract class StateHandler<T> : MonoBehaviour where T : BaseState
+    public abstract class StateHandler<T> : MonoBehaviour where T : IBaseState
     {
         [SerializeField] private bool debugTransitions = false;
         
@@ -26,6 +26,8 @@ namespace Software.Contraband.StateMachines
 
         public void LoadStateTypes()
         {
+            stateMachine.States.Clear();
+            
             Assembly statesAssembly = Assembly.GetAssembly(typeof(T));
             var states = statesAssembly.GetTypes()
                 .Where(t => !t.IsAbstract && t.IsSubclassOf(typeof(T)));

@@ -10,7 +10,7 @@ namespace Software.Contraband.StateMachines
         Default = 1
     }
 
-    public abstract class BaseState
+    public abstract class IBaseState
     {
         protected internal virtual StateType GetStateInfo => StateType.Generic;
 

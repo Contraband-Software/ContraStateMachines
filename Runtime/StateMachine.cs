@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Software.Contraband.StateMachines
 {
-    public class StateMachine<T> where T : BaseState
+    public class StateMachine<T> where T : IBaseState
     {
         public Dictionary<Type, T> States { get; internal set; } = new();
         
