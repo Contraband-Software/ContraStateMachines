@@ -10,11 +10,11 @@ namespace Software.Contraband.StateMachines
     /// <summary>
     /// A StateHandler that handles states of a certain type inherited from BaseState
     /// </summary>
-    public abstract class StateHandler<T> : MonoBehaviour where T : IBaseState
+    public abstract class StateHandler<T> : MonoBehaviour where T : BaseState
     {
-        [SerializeField] private bool debugTransitions = false;
-        
-        private StateMachine<T> stateMachine = new StateMachine<T>();
+        [field: SerializeField] public bool DebugStates { get; private set; } = false;
+
+        private readonly StateMachine<T> stateMachine = new();
 
         protected T CurrentState => stateMachine.CurrentState;
 
@@ -69,8 +69,10 @@ namespace Software.Contraband.StateMachines
         private void DebugOutput(Type newState)
         {
 #if UNITY_EDITOR
-            if (debugTransitions)
-                Debug.Log($"{GetType().Name} => {newState.Name}");
+            if (DebugStates)
+                Debug.Log(
+                    $"{GetType().Name} => {newState.Name}" + 
+                    $"{(stateMachine.DefaultState.GetType() == newState ? " [Default]" : "")}");
 #endif
         }
     }

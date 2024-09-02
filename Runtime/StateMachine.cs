@@ -6,11 +6,15 @@ using UnityEngine;
 
 namespace Software.Contraband.StateMachines
 {
-    public class StateMachine<T> where T : IBaseState
+    // ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
+    public class StateMachine<T> where T : BaseState
     {
         public Dictionary<Type, T> States { get; internal set; } = new();
         
-        private T DefaultState => States.Values.First(s => s.GetStateInfo.HasFlag(StateType.Default));
+        internal T DefaultState => States.Values.First(
+            s => s.GetType()
+                .GetCustomAttributes(typeof(DefaultStateAttribute), true).Length > 0);
+        
         public Type StartState => DefaultState.GetType();
         
         internal T CurrentState { get; private set; }

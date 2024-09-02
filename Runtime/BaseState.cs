@@ -10,9 +10,9 @@ namespace Software.Contraband.StateMachines
         Default = 1
     }
 
-    public abstract class IBaseState
+    public abstract class BaseState
     {
-        protected internal virtual StateType GetStateInfo => StateType.Generic;
+        // protected internal virtual StateType GetStateInfo => StateType.Generic;
 
         /// <summary>
         /// What you do when you first transition to this state
